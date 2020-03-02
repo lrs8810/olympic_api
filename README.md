@@ -13,6 +13,10 @@
 - [Tech Stack List](@tech-stack-list)
 
 ### Initial Setup
+Run the following command to import the olympic_data_2016.csv file:
+```
+rake import:olympics
+```
 ### How to Use
 ### Known Issues
 ### Running Tests
