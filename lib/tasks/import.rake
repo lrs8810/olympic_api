@@ -7,7 +7,8 @@ namespace :import do
 
     CSV.foreach(file, headers: true) do |row|
       sport = Sport.find_or_create_by(name: row['Sport'])
-      team = Team.find_or_create_by(name: row['Team'])
+      team_name = row['Team'].gsub(/[^a-z ]/i, '')
+      team = Team.find_or_create_by(name: team_name)
       olympian = Olympian.find_or_create_by(sport: sport,
                                             team: team,
                                             full_name: row['Name'],
