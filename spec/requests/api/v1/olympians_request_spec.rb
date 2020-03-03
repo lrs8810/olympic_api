@@ -29,17 +29,25 @@ RSpec.describe 'Olympians API' do
 
     expect(response).to be_successful
 
-    youngest_olympian = JSON.parse(response.body, symbolize_names: true)
+    youngest_res = JSON.parse(response.body, symbolize_names: true)
 
-    expect(youngest_olympian).to have_key(:olympians)
-    expect(youngest_olympian[:olympians].count).to eq(1)
-    expect(youngest_olympian[:olympians]).to be_a(Array)
-    expect(youngest_olympian[:olympians][0]).to be_a(Hash)
-    expect(youngest_olympian[:olympians][0]).to have_key(:name)
-    expect(youngest_olympian[:olympians][0]).to have_key(:team)
-    expect(youngest_olympian[:olympians][0]).to have_key(:age)
-    expect(youngest_olympian[:olympians][0]).to have_key(:sport)
-    expect(youngest_olympian[:olympians][0]).to have_key(:total_medals_won)
+    youngest_olympian = FormatOlympian.new(Olympian.first)
+
+    expect(youngest_res).to have_key(:olympians)
+    expect(youngest_res[:olympians].count).to eq(1)
+    expect(youngest_res[:olympians]).to be_a(Array)
+    expect(youngest_res[:olympians][0]).to be_a(Hash)
+    expect(youngest_res[:olympians][0]).to have_key(:name)
+    expect(youngest_res[:olympians][0]).to have_key(:team)
+    expect(youngest_res[:olympians][0]).to have_key(:age)
+    expect(youngest_res[:olympians][0]).to have_key(:sport)
+    expect(youngest_res[:olympians][0]).to have_key(:total_medals_won)
+    expect(youngest_res[:olympians][0][:name]).to eq(youngest_olympian.name)
+    expect(youngest_res[:olympians][0][:team]).to eq(youngest_olympian.team)
+    expect(youngest_res[:olympians][0][:age]).to eq(youngest_olympian.age)
+    expect(youngest_res[:olympians][0][:sport]).to eq(youngest_olympian.sport)
+    expect(youngest_res[:olympians][0][:total_medals_won]).to eq(youngest_olympian.total_medals_won)
+  end
 
   it 'sends a back the oldest olympian' do
     get '/api/v1/olympians?age=oldest'
