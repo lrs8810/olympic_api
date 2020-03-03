@@ -7,11 +7,11 @@ class Api::V1::OlympiansController < ApplicationController
   private
     def check_params(params)
       if request.query_string.empty?
-        olympians = FormatOlympians.new(Olympian.all)
+        FormatOlympians.new(Olympian.all)
       elsif params[:age] == 'youngest'
-        olympians = FormatOlympians.new(Olympian.youngest)
+        FormatOlympians.new(Olympian.youngest)
       elsif params[:age] == 'oldest'
-        olympians = FormatOlympians.new(Olympian.oldest)
+        FormatOlympians.new(Olympian.oldest)
       end
     end
 end
