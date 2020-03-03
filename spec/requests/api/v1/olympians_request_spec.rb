@@ -10,7 +10,7 @@ RSpec.describe 'Olympians API' do
 
     expect(response).to be_successful
 
-    olympians = JSON.parse(response.body)
+    olympians = JSON.parse(response.body, symbolize_names: true)
 
     expect(olympians.count).to eq(3)
     expect(olympians).to have_key("olympians")
