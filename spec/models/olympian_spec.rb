@@ -38,6 +38,16 @@ RSpec.describe Olympian, type: :model do
     end
   end
 
+  describe 'class methods' do
+    it '.youngest' do
+      olympian_1 = create(:olympian, :with_olympian_events, olympian_event_count: 3)
+      create(:olympian, :with_olympian_events, olympian_event_count: 2)
+      create(:olympian, :with_olympian_events, olympian_event_count: 1)
+
+      expect(Olympian.youngest[0]).to eq(olympian_1)
+    end
+  end
+
   describe 'instance methods' do
     it 'total_medals_won' do
       olympian = create(:olympian, :with_olympian_events, olympian_event_count: 3)

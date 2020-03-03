@@ -10,6 +10,10 @@ class Olympian < ApplicationRecord
   has_many :olympian_events
   has_many :events, through: :olympian_events
 
+  def self.youngest
+    where(age: minimum(:age))
+  end
+
   def total_medals_won
     self.olympian_events.where.not(medal: 'NA').count
   end

@@ -1,6 +1,10 @@
 class Api::V1::OlympiansController < ApplicationController
   def index
-    olympians = FormatOlympians.new(Olympian.all)
+    if params[:age]
+      olympians = FormatOlympians.new(Olympian.youngest)
+    else
+      olympians = FormatOlympians.new(Olympian.all)
+    end
     render json: olympians
   end
 end
