@@ -9,4 +9,8 @@ class Olympian < ApplicationRecord
   belongs_to :sport
   has_many :olympian_events
   has_many :events, through: :olympian_events
+
+  def total_medals_won
+    self.olympian_events.where.not(medal: 'NA').count
+  end
 end
