@@ -37,4 +37,12 @@ RSpec.describe Olympian, type: :model do
       expect(@olympian.team).to be_a(Team)
     end
   end
+
+  describe 'instance methods' do
+    it 'total_medals_won' do
+      olympian = create(:olympian, :with_olympian_events, olympian_event_count: 3)
+
+      expect(olympian.total_medals_won).to eq(3)
+    end
+  end
 end
