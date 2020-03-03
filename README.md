@@ -65,6 +65,24 @@ Example successful response:
     ]
 }
 ```
+##### Get Oldest Olympian
+`GET` to `/api/v1/olympians?age=oldest`
+
+Example successful response:
+```
+{
+  "olympians":
+    [
+      {
+        "name": "Julie Brougham",
+        "team": "New Zealand",
+        "age": 62,
+        "sport": "Equestrianism"
+        "total_medals_won": 0
+      }
+    ]
+}
+```
 
 ### Known Issues
 ### Running Tests

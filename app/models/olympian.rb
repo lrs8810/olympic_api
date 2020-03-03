@@ -14,6 +14,10 @@ class Olympian < ApplicationRecord
     where(age: minimum(:age))
   end
 
+  def self.oldest
+    where(age: maximum(:age))
+  end
+
   def total_medals_won
     self.olympian_events.where.not(medal: 'NA').count
   end

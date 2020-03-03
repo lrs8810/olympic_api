@@ -39,12 +39,20 @@ RSpec.describe Olympian, type: :model do
   end
 
   describe 'class methods' do
-    it '.youngest' do
-      olympian_1 = create(:olympian, :with_olympian_events, olympian_event_count: 3)
-      create(:olympian, :with_olympian_events, olympian_event_count: 2)
-      create(:olympian, :with_olympian_events, olympian_event_count: 1)
+    it 'youngest' do
+      youngest_olympian = create(:olympian, age: 25)
+      create(:olympian, age: 46)
+      create(:olympian, age: 32)
 
-      expect(Olympian.youngest[0]).to eq(olympian_1)
+      expect(Olympian.youngest[0]).to eq(youngest_olympian)
+    end
+
+    it 'oldest' do
+      create(:olympian, age: 25)
+      oldest_olympian = create(:olympian, age: 46)
+      create(:olympian, age: 32)
+
+      expect(Olympian.oldest[0]).to eq(oldest_olympian)
     end
   end
 

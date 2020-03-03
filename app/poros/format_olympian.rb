@@ -1,4 +1,6 @@
 class FormatOlympian
+  attr_reader :name, :team, :age, :sport, :total_medals_won
+
   def initialize(olympian)
     @name = olympian.full_name
     @team = olympian.team.name
