@@ -1,4 +1,4 @@
-# README
+# Koroibos Olympic API
 
 ### Introduction
 ### Jump To
