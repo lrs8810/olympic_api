@@ -45,6 +45,24 @@ Example successful response:
     ]
 }
 ```
+##### Get Youngest Olympian
+`GET` to `/api/v1/olympians?age=youngest`
+
+Example successful response:
+```
+{
+  "olympians":
+    [
+      {
+        "name": "Ana Iulia Dascl",
+        "team": "Romania",
+        "age": 13,
+        "sport": "Swimming"
+        "total_medals_won": 0
+      }
+    ]
+}
+```
 
 ### Known Issues
 ### Running Tests
