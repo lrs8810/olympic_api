@@ -1,4 +1,6 @@
-# README
+# Koroibos Olympic API
+
+[![Build Status](https://travis-ci.com/lrs8810/olympic_api.svg?branch=master)](https://travis-ci.com/lrs8810/olympic_api)
 
 ### Introduction
 ### Jump To
@@ -10,7 +12,7 @@
 - [How to Contribute](#how-to-contribute)
 - [Core Contributors](#core-contributors)
 - [Schema Design](#schema-design)
-- [Tech Stack List](@tech-stack-list)
+- [Tech Stack List](#tech-stack-list)
 
 ### Initial Setup
 Run the following command to import the olympic_data_2016.csv file:
