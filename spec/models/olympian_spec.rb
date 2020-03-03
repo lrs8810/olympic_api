@@ -45,6 +45,12 @@ RSpec.describe Olympian, type: :model do
       create(:olympian, :with_olympian_events, olympian_event_count: 1)
 
       expect(Olympian.youngest[0]).to eq(olympian_1)
+    it 'oldest' do
+      create(:olympian, age: 25)
+      oldest_olympian = create(:olympian, age: 46)
+      create(:olympian, age: 32)
+
+      expect(Olympian.oldest[0]).to eq(oldest_olympian)
     end
   end
 
