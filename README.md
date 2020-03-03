@@ -1,5 +1,7 @@
 # Koroibos Olympic API
 
+[![Build Status](https://travis-ci.com/lrs8810/olympic_api.svg?branch=master)](https://travis-ci.com/lrs8810/olympic_api)
+
 ### Introduction
 ### Jump To
 - [Initial Setup](#initial-setup)
