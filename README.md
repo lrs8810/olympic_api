@@ -18,6 +18,34 @@ Run the following command to import the olympic_data_2016.csv file:
 rake import:olympics
 ```
 ### How to Use
+#### Olympians
+##### Get List of All Olympians
+`GET` to `/api/v1/olympians`
+
+Example successful response:
+```
+{
+  "olympians":
+    [
+      {
+        "name": "Maha Abdalsalam",
+        "team": "Egypt",
+        "age": 18,
+        "sport": "Diving"
+        "total_medals_won": 0
+      },
+      {
+        "name": "Ahmad Abughaush",
+        "team": "Jordan",
+        "age": 20,
+        "sport": "Taekwondo"
+        "total_medals_won": 1
+      },
+      {...}
+    ]
+}
+```
+
 ### Known Issues
 ### Running Tests
 ### How to Contribute
