@@ -3,11 +3,10 @@
 [![Build Status](https://travis-ci.com/lrs8810/olympic_api.svg?branch=master)](https://travis-ci.com/lrs8810/olympic_api)
 
 ### Introduction
-The Koroibos Olympic API is a take home challenge for the Koroibos organization. The API exposes 6 endpoints which each aggregate data for olympians and events based on 2016 Olympics data provided via a CSV file.
+The Koroibos Olympic API is a take home challenge for the Koroibos organization. The API exposes 6 endpoints which each aggregate data for olympians and events based on 2016 Olympics data provided via a CSV file. The user can see each olympian that competed, who the youngest and oldest were, what were the over all 2016 olympian stats, what sports and events were present and lastly who placed for each event. 
 ### Jump To
 - [Initial Setup](#initial-setup)
 - [How to Use](#how-to-use)
-- [Known Issues](#known-issues)
 - [Running Tests](#running-tests)
 - [Initial Setup](#initial-setup)
 - [Core Contributors](#core-contributors)
@@ -16,9 +15,10 @@ The Koroibos Olympic API is a take home challenge for the Koroibos organization.
 - [Tech Stack List](#tech-stack-list)
 
 ### Initial Setup
-Clone the repo:
+Fork/clone the repo onto your local machine:
 ```
 git clone git@github.com:lrs8810/olympic_api.git
+cd olympic_api
 ```
 Install dependencies:
 ```
@@ -39,7 +39,15 @@ rails server
 ```
 Then navigate to your browser and enter http://localhost:3000. Append any endpoints in the [How to Use](#how-to-use) section to make the requests.  
 ### How to Use
-All six endpoints are `GET` requests. The API is available at https://olympic-2016-ls.herokuapp.com/ with any of the endpoints listed below. 
+All six endpoints are `GET` requests. The production API is available at https://olympic-2016-ls.herokuapp.com for use right away with any of the endpoints listed below. 
+- [Olympians](#olympians)
+  - [Get List of All Olympians](#get-list-of-all-olympians)
+  - [Get Youngest Olympian](#get-youngest-olympian)
+  - [Get Oldest Olympian](#get-oldest-olympian)
+  - [Get Olympian Stats](#get-olympian-stats)
+- [Events](#events)
+  - [Get List of All Events](#get-list-of-all-events)
+  - [Get Medalists for a Specific Event](#get-medalists-for-a-specific-event) 
 #### Olympians
 ##### Get List of All Olympians
 `GET` to `/api/v1/olympians`
@@ -67,6 +75,7 @@ Example successful response:
     ]
 }
 ```
+Return to: [How to Use](#how-to-use) or [Jump To](#jump-to)
 ##### Get Youngest Olympian
 `GET` to `/api/v1/olympians?age=youngest`
 
@@ -85,6 +94,7 @@ Example successful response:
     ]
 }
 ```
+Return to: [How to Use](#how-to-use) or [Jump To](#jump-to)
 ##### Get Oldest Olympian
 `GET` to `/api/v1/olympians?age=oldest`
 
@@ -103,6 +113,7 @@ Example successful response:
     ]
 }
 ```
+Return to: [How to Use](#how-to-use) or [Jump To](#jump-to)
 ##### Get Olympian Stats
 `GET` to `/api/v1/olympian_stats`
 
@@ -120,6 +131,7 @@ Example successful response:
   }
 }
 ```
+Return to: [How to Use](#how-to-use) or [Jump To](#jump-to)
 #### Events
 ##### Get List of All Events
 `GET` to `/api/v1/events`
@@ -152,6 +164,7 @@ Example successful response:
     ]
 }
 ```
+Return to: [How to Use](#how-to-use) or [Jump To](#jump-to)
 ##### Get Medalists for a Specific Event
 `GET` to `/api/v1/events/:id/medalists`
 
@@ -175,6 +188,9 @@ Example successful response:
     ]
 }
 ```
+If the event did not have any medalists it will return the event name and an empty array for the medalists. 
+
+Return to: [How to Use](#how-to-use) or [Jump To](#jump-to)
 ### Running Tests
 To run tests use the following command:
 ```
@@ -194,9 +210,9 @@ open coverage/index.html
 <img width="609" alt="Screen Shot 2020-03-02 at 6 49 23 AM" src="https://user-images.githubusercontent.com/30582885/75682066-08a00580-5c52-11ea-8eff-04bafd6c29ee.png">
 
 ### Tech Stack List
-- Ruby 2.4.1
-- Rails 5.2.4
-- RSpec 3.9
+- Ruby v2.4.1
+- Rails v5.2.4
+- RSpec v3.9
 - PostgreSQL
 - Travis-CI
 - Heroku
