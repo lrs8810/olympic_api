@@ -83,6 +83,23 @@ Example successful response:
     ]
 }
 ```
+##### Get Olympian Stats
+`GET` to `/api/v1/olympian_stats`
+
+Example successful response:
+```
+{
+  "olympian_stats": {
+    "total_competing_olympians": 3120
+    "average_weight:" {
+      "unit": "kg",
+      "male_olympians": 75.4,
+      "female_olympians": 70.2
+    }
+    "average_age:" 26.2
+  }
+}
+```
 
 ### Known Issues
 ### Running Tests
