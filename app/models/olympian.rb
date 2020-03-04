@@ -34,6 +34,14 @@ class Olympian < ApplicationRecord
     where(sex: 'F').average(:weight)
   end
 
+  def self.with_medals
+    where('olympian_events.medal != ?', 'NA').order(:id)
+  end
+
+  def get_medal(event_id)
+    olympian_events.where(event_id: event_id).first.medal
+  end
+
   def total_medals_won
     self.olympian_events.where.not(medal: 'NA').count
   end
