@@ -35,4 +35,48 @@ RSpec.describe 'Events API' do
     expect(events_res[:events][1][:events]).to be_a(Array)
     expect(events_res[:events][1][:events].count).to eq(3)
   end
+
+  it 'sends medalists for a specific event' do
+    olympian_1 = create(:olympian, full_name: 'Greg')
+    olympian_2 = create(:olympian, full_name: 'Sam')
+    olympian_3 = create(:olympian, full_name: 'Fred')
+
+    olympian_event_1 = create(:olympian_event,
+                              event_id: @badminton_doubles.id,
+                              olympian_id: olympian_1.id,
+                              medal: 'Bronze')
+    olympian_event_2 = create(:olympian_event,
+                              event_id: @badminton_doubles.id,
+                              olympian_id: olympian_2.id,
+                              medal: 'Gold')
+    olympian_event_3 = create(:olympian_event,
+                              event_id: @badminton_doubles.id,
+                              olympian_id: olympian_3.id,
+                              medal: 'NA')
+
+    get "/api/v1/events/#{@badminton_doubles.id}/medalists"
+
+    expect(response).to be_successful
+
+    events_res = JSON.parse(response.body, symbolize_names: true)
+
+    expect(events_res).to be_a(Hash)
+    expect(events_res).to have_key(:event)
+    expect(events_res[:event]).to eq(@badminton_doubles.name)
+    expect(events_res).to have_key(:medalists)
+    expect(events_res[:medalists]).to be_a(Array)
+    expect(events_res[:medalists].count).to eq(2)
+    expect(events_res[:medalists][0]).to have_key(:name)
+    expect(events_res[:medalists][0][:name]).to eq(olympian_2.full_name)
+    expect(events_res[:medalists][0]).to have_key(:team)
+    expect(events_res[:medalists][0][:team]).to eq(olympian_2.team.name)
+    expect(events_res[:medalists][0]).to have_key(:age)
+    expect(events_res[:medalists][0][:age]).to eq(olympian_2.age)
+    expect(events_res[:medalists][0]).to have_key(:medal)
+    expect(events_res[:medalists][0][:medal]).to eq(olympian_event_2.medal)
+    expect(events_res[:medalists][1][:name]).to_not eq(olympian_3.full_name)
+    expect(events_res[:medalists][1][:medal]).to_not eq(olympian_event_3.medal)
+    expect(events_res[:medalists][1][:name]).to eq(olympian_1.full_name)
+    expect(events_res[:medalists][1][:medal]).to eq(olympian_event_1.medal)
+  end
 end
