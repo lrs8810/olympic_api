@@ -79,4 +79,41 @@ RSpec.describe 'Events API' do
     expect(events_res[:medalists][1][:name]).to eq(olympian_2.full_name)
     expect(events_res[:medalists][1][:medal]).to eq(olympian_event_2.medal)
   end
+
+  it 'sends error if event_id is not in the database' do
+    olympian_1 = create(:olympian, full_name: 'Greg')
+    olympian_2 = create(:olympian, full_name: 'Sam')
+    olympian_3 = create(:olympian, full_name: 'Fred')
+
+    olympian_event_1 = create(:olympian_event,
+                              event_id: @badminton_doubles.id,
+                              olympian_id: olympian_1.id,
+                              medal: 'Bronze')
+    olympian_event_2 = create(:olympian_event,
+                              event_id: @badminton_doubles.id,
+                              olympian_id: olympian_2.id,
+                              medal: 'Gold')
+    olympian_event_3 = create(:olympian_event,
+                              event_id: @badminton_doubles.id,
+                              olympian_id: olympian_3.id,
+                              medal: 'NA')
+
+    get "/api/v1/events/700/medalists"
+
+    expect(response.status).to eq(404)
+
+    events_res = JSON.parse(response.body, symbolize_names: true)
+
+    expect(events_res).to have_key(:error)
+    expect(events_res[:error]).to eq('Event with id 700 was not found. Please input a valid event id between 1-305.')
+
+    get "/api/v1/events/bob/medalists"
+
+    expect(response.status).to eq(404)
+
+    events_res = JSON.parse(response.body, symbolize_names: true)
+
+    expect(events_res).to have_key(:error)
+    expect(events_res[:error]).to eq('Event with id bob was not found. Please input a valid event id between 1-305.')
+  end
 end
