@@ -18,6 +18,22 @@ class Olympian < ApplicationRecord
     where(age: maximum(:age))
   end
 
+  def self.total_competing
+    count(:id)
+  end
+
+  def self.average_age
+    average(:age)
+  end
+
+  def self.male_avg_weight
+    where(sex: 'M').average(:weight)
+  end
+
+  def self.female_avg_weight
+    where(sex: 'F').average(:weight)
+  end
+
   def total_medals_won
     self.olympian_events.where.not(medal: 'NA').count
   end
