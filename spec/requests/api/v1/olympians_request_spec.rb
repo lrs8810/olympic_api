@@ -7,7 +7,7 @@ RSpec.describe 'Olympians API' do
 
   it 'sends a list of olympians' do
     get '/api/v1/olympians'
-
+    
     expect(response).to be_successful
 
     olympians = JSON.parse(response.body, symbolize_names: true)
@@ -72,5 +72,34 @@ RSpec.describe 'Olympians API' do
     expect(oldest_res[:olympians][0][:age]).to eq(oldest_olympian.age)
     expect(oldest_res[:olympians][0][:sport]).to eq(oldest_olympian.sport)
     expect(oldest_res[:olympians][0][:total_medals_won]).to eq(oldest_olympian.total_medals_won)
+  end
+
+  it 'sends a back an error if query params are not oldest, youngest, or age' do
+    get '/api/v1/olympians?name=saddestr'
+
+    expect(response.status).to eq(400)
+
+    error_res = JSON.parse(response.body, symbolize_names: true)
+
+    expect(error_res).to have_key(:error)
+    expect(error_res[:error]).to eq('The request you made is invalid. Please pass `age=youngest` or `age=oldest` in the query parameters.')
+
+    get '/api/v1/olympians?age=saddest'
+
+    expect(response.status).to eq(400)
+
+    error_res = JSON.parse(response.body, symbolize_names: true)
+
+    expect(error_res).to have_key(:error)
+    expect(error_res[:error]).to eq('The request you made is invalid. Please pass `age=youngest` or `age=oldest` in the query parameters.')
+
+    get '/api/v1/olympians?name=youngest'
+
+    expect(response.status).to eq(400)
+
+    error_res = JSON.parse(response.body, symbolize_names: true)
+
+    expect(error_res).to have_key(:error)
+    expect(error_res[:error]).to eq('The request you made is invalid. Please pass `age=youngest` or `age=oldest` in the query parameters.')
   end
 end
