@@ -6,6 +6,6 @@ class FormatAvgWeight
   end
 
   def round_weight(avg_weight)
-    avg_weight.round(1)
+    avg_weight.to_f.round(1)
   end
 end
