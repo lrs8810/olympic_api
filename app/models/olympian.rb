@@ -35,7 +35,7 @@ class Olympian < ApplicationRecord
   end
 
   def self.with_medals
-    where('olympian_events.medal != ?', 'NA')
+    where('olympian_events.medal != ?', 'NA').order(:id)
   end
 
   def get_medal(event_id)
