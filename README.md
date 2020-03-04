@@ -132,6 +132,29 @@ Example successful response:
     ]
 }
 ```
+##### Get Medalists for a Specific Event
+`GET` to `/api/v1/events/:id/medalists`
+
+Example successful response:
+```
+{
+  "event": "Badminton Mixed Doubles",
+  "medalists": [
+      {
+        "name": "Tontowi Ahmad",
+        "team": "Indonesia-1",
+        "age": 29,
+        "medal": "Gold"
+      },
+      {
+        "name": "Chan Peng Soon",
+        "team": "Malaysia",
+        "age": 28,
+        "medal": "Silver"
+      }
+    ]
+}
+```
 
 ### Known Issues
 ### Running Tests
