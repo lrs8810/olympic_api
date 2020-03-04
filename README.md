@@ -3,23 +3,43 @@
 [![Build Status](https://travis-ci.com/lrs8810/olympic_api.svg?branch=master)](https://travis-ci.com/lrs8810/olympic_api)
 
 ### Introduction
+The Koroibos Olympic API is a take home challenge for the Koroibos organization. The API exposes 6 endpoints which each aggregate data for olympians and events based on 2016 Olympics data provided via a CSV file.
 ### Jump To
 - [Initial Setup](#initial-setup)
 - [How to Use](#how-to-use)
 - [Known Issues](#known-issues)
 - [Running Tests](#running-tests)
 - [Initial Setup](#initial-setup)
-- [How to Contribute](#how-to-contribute)
 - [Core Contributors](#core-contributors)
+- [Project Board](#project-board)
 - [Schema Design](#schema-design)
 - [Tech Stack List](#tech-stack-list)
 
 ### Initial Setup
+Clone the repo:
+```
+git clone git@github.com:lrs8810/olympic_api.git
+```
+Install dependencies:
+```
+bundle install
+```
+Setup the database:
+```
+rails db:create
+rails db:migrate
+```
 Run the following command to import the olympic_data_2016.csv file:
 ```
 rake import:olympics
 ```
+If you would like to test the endpoints locally, you can do so by starting the server:
+```
+rails server
+```
+Then navigate to your browser and enter http://localhost:3000. Append any endpoints in the [How to Use](#how-to-use) section to make the requests.  
 ### How to Use
+All six endpoints are `GET` requests. The API is available at https://olympic-2016-ls.herokuapp.com/ with any of the endpoints listed below. 
 #### Olympians
 ##### Get List of All Olympians
 `GET` to `/api/v1/olympians`
@@ -155,14 +175,28 @@ Example successful response:
     ]
 }
 ```
-
-### Known Issues
 ### Running Tests
-### How to Contribute
+To run tests use the following command:
+```
+rspec
+```
+If you would like to see the current test coverage use the following command:
+```
+open coverage/index.html
+```
 ### Core Contributors
 - [Laura Schulz](https://github.com/lrs8810)
+
+### Project Board
+- [Koroibos Olympic API Project Board](https://github.com/lrs8810/olympic_api/projects/1)
 
 ### Schema Design
 <img width="609" alt="Screen Shot 2020-03-02 at 6 49 23 AM" src="https://user-images.githubusercontent.com/30582885/75682066-08a00580-5c52-11ea-8eff-04bafd6c29ee.png">
 
 ### Tech Stack List
+- Ruby 2.4.1
+- Rails 5.2.4
+- RSpec 3.9
+- PostgreSQL
+- Travis-CI
+- Heroku
