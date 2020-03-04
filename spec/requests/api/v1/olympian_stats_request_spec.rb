@@ -1,11 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Olympian Stats API' do
-  before(:each) do
-    create_list(:olympian, 3)
-  end
-
   it 'sends a back the olympian statistics' do
+    create(:olympian, age: 30, weight: 50, sex: 'F')
+    create(:olympian, age: 23, weight: 65, sex: 'M')
+    create(:olympian, age: 25, weight: 75, sex: 'F')
+    create(:olympian, age: 40, weight: 80, sex: 'F')
+    create(:olympian, age: 35, weight: 100, sex: 'M')
+    create(:olympian, age: 19, weight: 165, sex: 'M')
+    
     get '/api/v1/olympian_stats'
 
     expect(response).to be_successful
@@ -21,7 +24,7 @@ RSpec.describe 'Olympian Stats API' do
     expect(stats_res[:olympian_stats]).to have_key(:average_age)
     expect(stats_res[:olympian_stats][:average_weight]).to be_a(Hash)
     expect(stats_res[:olympian_stats][:average_weight]).to have_key(:unit)
-    expect(stats_res[:olympian_stats][:average_weight][:unite]).to eq('kg')
+    expect(stats_res[:olympian_stats][:average_weight][:unit]).to eq('kg')
     expect(stats_res[:olympian_stats][:average_weight]).to have_key(:male_olympians)
     expect(stats_res[:olympian_stats][:average_weight]).to have_key(:female_olympians)
   end
