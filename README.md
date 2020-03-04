@@ -100,6 +100,38 @@ Example successful response:
   }
 }
 ```
+#### Events
+##### Get List of All Events
+`GET` to `/api/v1/events`
+
+Example successful response:
+```
+{
+  "events":
+    [
+      {
+        "sport": "Archery",
+        "events": [
+          "Archery Men's Individual",
+          "Archery Men's Team",
+          "Archery Women's Individual",
+          "Archery Women's Team"
+        ]
+      },
+      {
+        "sport": "Badminton",
+        "events": [
+          "Badminton Men's Doubles",
+          "Badminton Men's Singles",
+          "Badminton Women's Doubles",
+          "Badminton Women's Singles",
+          "Badminton Mixed Doubles"
+        ]
+      },
+      {...}
+    ]
+}
+```
 
 ### Known Issues
 ### Running Tests
