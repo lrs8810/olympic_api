@@ -3,4 +3,8 @@ class Sport < ApplicationRecord
 
   has_many :olympians
   has_many :events
+
+  def self.order_names
+    order(:name)
+  end
 end
