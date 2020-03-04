@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.com/lrs8810/olympic_api.svg?branch=master)](https://travis-ci.com/lrs8810/olympic_api)
 
 ### Introduction
-The Koroibos Olympic API is a take home challenge for the Koroibos organization. The API exposes 6 endpoints which each aggregate data for olympians and events based on 2016 Olympics data provided via a CSV file. The user can see each olympian that competed, who the youngest and oldest were, what were the over all 2016 olympian stats, what sports and events were present and lastly who placed for each event. 
+The Koroibos Olympic API is a take home challenge for the Koroibos organization. The API exposes 6 endpoints which each aggregate data for olympians and events based on 2016 Olympics data provided via a CSV file. The user can see each olympian that competed, who the youngest and oldest olympians were, what were the overall 2016 olympian stats, what sports and events were present and lastly who the medalists were for each event. 
 ### Jump To
 - [Initial Setup](#initial-setup)
 - [How to Use](#how-to-use)
